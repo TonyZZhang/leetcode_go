@@ -7,13 +7,33 @@ type ListNode struct {
 }
 
 func removeElements(head *ListNode, val int) *ListNode {
-	newList := new(ListNode)
-	newList = head
-	for head.Next != nil {
-		if head.Next.Val == val {
-			head.Next = head.Next.Next
-		}
-		head = head.Next
+	if head == nil {
+		return nil
 	}
-	return newList
+	all := false
+	newHead := new(ListNode)
+	for head != nil {
+		if head.Val != val {
+			newHead = head
+			all = true
+			break
+		} else {
+			head = head.Next
+		}
+	}
+
+	if !all {
+		return nil
+	}
+
+	for head != nil {
+		if head.Next != nil {
+			if head.Next.Val == val {
+				head.Next = head.Next.Next
+			} else {
+				head = head.Next
+			}
+		}
+	}
+	return newHead
 }
