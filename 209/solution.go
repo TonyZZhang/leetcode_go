@@ -1,8 +1,6 @@
-package main
+package leetcode
 
-import "fmt"
-
-func MinSubArrayLen(target int, nums []int) int {
+func minSubArrayLen(target int, nums []int) int {
 	if len(nums) == 0 {
 		return 0
 	}
@@ -13,26 +11,26 @@ func MinSubArrayLen(target int, nums []int) int {
 			return 0
 		}
 	}
-		left := 0
+
+	if nums[0] > target {
+		return 1
+	}
+	left := 0
 	right := 1
 	result := len(nums) + 1
 
-	for i := 0; i < right; i++ {
+	for right < len(nums) {
 		temp := 0
-		for k := left; k < right; k++ {
-			temp = temp + nums[k]
+		for i := left; i <= right ; i++ {
+			temp = temp + nums[i]
 		}
 		if temp < target {
 			right++
-		} else {
-			if right-left < result{
-				fmt.Println()
-				result = right-left
+		}else {
+			if right-left+1 < result {
+				result = right-left+1
 			}
 			left++
-		}
-		if right > len(nums) {
-			break
 		}
 	}
 
