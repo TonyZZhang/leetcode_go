@@ -11,7 +11,11 @@ type TreeNode struct {
 //          2
 //         / \
 //        3
-
+//
+//       1
+//      / \
+//     2   3
+//     2-->1-->3
 func inorderTraversal(root *TreeNode) []int {
 	stack := []*TreeNode{}
 	var res []int
