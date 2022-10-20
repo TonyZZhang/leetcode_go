@@ -1,21 +1,9 @@
 package leetcode
 
-import (
-	"fmt"
-	"testing"
-)
-
-func TestName(t *testing.T) {
-	var in []int
-	in = append(in, 1)
-	in = append(in, 5)
-	in = append(in, 2)
-	in = append(in, 4)
-	in = append(in, 67)
-	in = append(in, 3)
-	fmt.Println(quickSort(in))
-}
-
+//3 1 4
+//1 3 4
+//主要在于边缘处理上
+//从右边找到第一个比base小的，从左边找到第一个比base大的，交换
 func quickSort(nums []int) []int {
 	if len(nums) <= 1 {
 		return nums
@@ -44,22 +32,4 @@ func quickSort(nums []int) []int {
 	quickSort(nums[0:right])
 	quickSort(nums[right+1:])
 	return nums
-}
-
-func selectSort(x []int) []int {
-	for i := 0; i < len(x); i++ {
-		min := x[i]
-		needSwap := i
-		for j := i; j < len(x); j++ {
-			if x[j] < min {
-				min = x[j]
-				needSwap = j
-			}
-		}
-		minX := x[needSwap]
-		x[needSwap] = x[i]
-		x[i] = minX
-
-	}
-	return x
 }
