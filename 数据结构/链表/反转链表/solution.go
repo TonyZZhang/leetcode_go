@@ -19,3 +19,14 @@ func reverseList(head *ListNode) *ListNode {
 	}
 	return preHead
 }
+
+func reverseListV2(l *ListNode) {
+	empty := &ListNode{}
+	for l != nil && l.Next != nil {
+		cur := l
+		next := l.Next
+		l.Next = empty
+		l = next
+		empty = cur
+	}
+}
