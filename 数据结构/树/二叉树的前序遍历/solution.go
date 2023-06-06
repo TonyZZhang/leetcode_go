@@ -33,3 +33,21 @@ func preorderTraversal(root *TreeNode) []int {
 	}
 	return res
 }
+//递归写法
+func preorderTraversal_(root *TreeNode) []int {
+	var res []int
+	if root != nil {
+		res = append(res, root.Val)
+	} else {
+		return res
+	}
+	if root.Left != nil {
+		left := preorderTraversal(root.Left)
+		res = append(res, left...)
+	}
+	if root.Right != nil {
+		right := preorderTraversal(root.Right)
+		res = append(res, right...)
+	}
+	return res
+}
