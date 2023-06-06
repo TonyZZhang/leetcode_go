@@ -29,3 +29,26 @@ func maxDepth(root *TreeNode) int {
 	}
 	return result
 }
+
+func depth(root *TreeNode) int {
+	var res int
+	queue := make([]*TreeNode, 0)
+	if root != nil {
+		queue = append(queue, root)
+	}
+
+	for len(queue) > 0 {
+		n := len(queue)
+		for i:=0; i<n; i++ {
+			if queue[i].Left != nil {
+				queue = append(queue, queue[i].Left)
+			}
+			if queue[i].Right != nil {
+				queue = append(queue, queue[i].Right)
+			}
+		}
+		queue = queue[n:]
+		res++
+	}
+	return res
+}
