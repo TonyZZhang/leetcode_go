@@ -1,5 +1,7 @@
 package leetcode
 
+import "fmt"
+
 type TreeNode struct {
 	Val int
 	Left *TreeNode
@@ -9,15 +11,14 @@ type TreeNode struct {
 
 func sumNumbers(root *TreeNode) int {
 	res := nodes(root)
+	fmt.Println(res)
 	var nums []int
 	for i := 0; i < len(res); i++ {
 		var temp int
+		var tenNum int
 		for k := len(res[i])-1; k >= 0; k-- {
-			if k != len(res[i])-1 {
-				temp = res[i][k]*10 + temp
-			} else {
-				temp = res[i][k]
-			}
+			temp = res[i][k]*mi(tenNum)+temp
+			tenNum++
 		}
 		nums = append(nums, temp)
 	}
@@ -26,6 +27,14 @@ func sumNumbers(root *TreeNode) int {
 		r += nums[i]
 	}
 	return r
+}
+
+func mi(int2 int)int {
+	res := 1
+	for i := 0; i < int2; i++ {
+		res = res * 10
+	}
+	return res
 }
 
 //二叉树的所有路径
@@ -69,13 +78,13 @@ func dfsv2(root *TreeNode, path []int, res *[][]int) {
 	}
 
 	if root.Left != nil {
-		path = append(path, root.Left.Val)
-		dfsv2(root.Left, path, res)
+		pathNew := append(path, root.Left.Val)
+		dfsv2(root.Left, pathNew, res)
 	}
 
 	if root.Right != nil {
-		path = append(path, root.Right.Val)
-		dfsv2(root.Right, path, res)
+		pathNew := append(path, root.Right.Val)
+		dfsv2(root.Right, pathNew, res)
 	}
 }
 
