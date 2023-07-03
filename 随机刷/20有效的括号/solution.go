@@ -37,4 +37,20 @@ func isCorrect(left, right uint8) bool {
 	return false
 }
 
+func isCorrect(s string) bool {
+	stack := make([]rune, 0)
+	p := map[rune]rune{'}':'{',']':'[',')':'('}
+	for i := 0; i < len(s); i++ {
+		c := rune(s[i])
+		v, ok := p[c]
+		if !ok {
+			stack = append(stack, c)
+		} else if stack[len(stack)-1] != v {
+			return false
+		} else {
+			stack = stack[:len(stack)-1]
+		}
+	}
+	return len(stack) == 0
+}
 
