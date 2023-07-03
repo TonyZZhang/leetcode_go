@@ -1,1 +1,5 @@
-package _6全排列
+package leetcode
+
+func permute(nums []int) [][]int {
+
+}
