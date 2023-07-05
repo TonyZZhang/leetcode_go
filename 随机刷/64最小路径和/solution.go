@@ -6,6 +6,9 @@ func minPathSum(grid [][]int) int {
 		return 0
 	}
 	y := len(grid[0])-1
+	if y < 0 {
+		return 0
+	}
 	return dp(x, y, grid)
 }
 
